@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RegisterPage } from './pages/auth/register/register.page';
 import { CardsListPage } from './pages/cards-list/cards-list.page';
+import { CardsFormPage } from './pages/cards-form/cards-form.page';
+import { StatisticsPage } from './pages/statistics/statistics.page';
 import { AuthGuard } from './guards/auth.guard';
 import {TokenValidation} from '../libs/verifyToken'
 import { ViewCardPage } from './pages/cards-list/view-card/view-card.page';
-import { MesaPage } from './pages/auth/mesa/mesa.page';
-import { MesaGuard } from './guards/mesa.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch:'full'},
-  { path: 'cards', component: CardsListPage, canActivate: [AuthGuard, MesaGuard]},
-  { path: 'cards/view/:id', component: ViewCardPage, canActivate: [AuthGuard, MesaGuard]}, 
+  { path: 'statistics', component: StatisticsPage, canActivate: [AuthGuard] },
+  { path: 'cards', component: CardsListPage, canActivate: [AuthGuard]},
+  { path: 'cards/view/:id', component: ViewCardPage, canActivate: [AuthGuard]}, 
   { path: 'register', component: RegisterPage },
-  { path: 'mesa', component: MesaPage, canActivate: [AuthGuard] },
   
   {
     path: 'login',
@@ -32,16 +32,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/navigation/navigation.module').then( m => m.NavigationPageModule)
   },
   {
+    path: 'statistics',
+    loadChildren: () => import('./pages/statistics/statistics.module').then( m => m.StatisticsPageModule),
+  },
+  {
     path: 'view-card',
     loadChildren: () => import('./pages/cards-list/view-card/view-card.module').then( m => m.ViewCardPageModule)
-  },
-  {
-    path: 'mesa',
-    loadChildren: () => import('./pages/auth/mesa/mesa.module').then( m => m.MesaPageModule)
-  },
-  {
-    path: 'filter-popover',
-    loadChildren: () => import('./pages/navigation/filter-popover/filter-popover.module').then( m => m.FilterPopoverPageModule)
   },
 
 

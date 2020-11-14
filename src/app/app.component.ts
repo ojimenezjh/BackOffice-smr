@@ -1,42 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable, Subject } from "rxjs";
-import { Platform } from "@ionic/angular";
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { AuthService } from "../services/auth.service";
-import { CardsService } from "../services/cards.service";
-import { Card } from "src/models/Card";
-import { ModalController } from "@ionic/angular";
-import { CardsListPage } from "../app/pages/cards-list/cards-list.page";
-import { LoginPage } from "./pages/auth/login/login.page";
-import { Corp } from "src/models/auth/Corp";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "app.component.html",
-  styleUrls: ["app.component.scss"],
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  cards: Card[] = [];
-
-  card: Card = {
-    id_carta: 0,
-    nombre: "",
-    descripcion: "",
-    horario: "",
-    imagen: "",
-    posicion: 0,
-  };
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService,
-    private cardsService: CardsService,
-    private modalController: ModalController,
-    private router: Router,
-    private login: LoginPage
+    private authService: AuthService
   ) {
     this.initializeApp();
   }
@@ -46,70 +25,14 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
-  nombreCorp;
-  logoCorp;
-  isLoggedIn$: Observable<boolean>;
-  isMesaOk$: Observable<boolean>; // {1}
+  isLoggedIn$: Observable<boolean>;                  // {1}
 
   ngOnInit() {
-    this.login.getImg();
-    this.isLoggedIn$ = this.authService.isLoggedIn;
-    this.isMesaOk$ = this.authService.isMesaOk;
-    this.login.subscriber$.subscribe((corp: Corp) => {
-      this.logoCorp = corp.logo;
-      this.nombreCorp = corp.name;
-    });
-    // {2}
+    this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
   }
 
-  onLogout() {
-    this.authService.logout(); // {3}
+  onLogout(){
+    this.authService.logout();                      // {3}
   }
-
-  //Emite la variable id_carta, que será capturada después con un this.appComponent.subscriber$.subscribe(id_card => {}) en cards-list.page.ts
-
-  observer = new Subject();
-  public subscriber$ = this.observer.asObservable();
-
-  emitData(id_carta: Number) {
-    this.observer.next(id_carta);
-  }
-
-  getCards() {
-    this.cardsService.getCards().subscribe(
-      (res) => {
-        this.cards = res;
-      },
-      (err) => console.error(err)
-    );
-    return Boolean;
-  }
-
-  toggle() {
-    if (this.cards.length > 0) return (this.cards = []);
-    else if (this.cards.length <= 0) return this.getCards();
-  }
-
-  /*  sideMenu()
-  {
-    this.navigate =
-    [
-      {
-        title : "Cards",
-        url   : "/cards",
-        icon  : "home"
-      },
-      {
-        title : "Login",
-        url   : "/login",
-        icon  : "planet"
-      },
-      {
-        title : "Contacts",
-        url   : "/tab3",
-        icon  : "contacts"
-      },
-    ]
-  } */
 }
+

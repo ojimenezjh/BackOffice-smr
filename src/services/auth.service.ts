@@ -4,7 +4,6 @@ import { tap } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
 import { Storage } from "@ionic/storage";
 import { User } from "../models/auth/User";
-import { Mesa } from "../models/auth/Mesa";
 import { Corp } from "../models/auth/Corp";
 import { AuthResponse } from "../models/auth/AuthResponse";
 
@@ -21,20 +20,11 @@ export class AuthService {
     profile: "",
   };
 
-  mesa: Mesa = {
-    id_mesa: 0,
-    clave: "",
-  };
-
-  id_mesa = this.mesa.id_mesa;
-
   API_URI = "http://82.223.128.240:3000/api";
 
   authSubject = new BehaviorSubject<boolean>(false);
 
   authProfile = new BehaviorSubject<boolean>(false);
-
-  authMesa = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private storage: Storage) {}
 
@@ -83,19 +73,6 @@ export class AuthService {
     return this.http.get<Corp[]>(`${this.API_URI}/navigation/${id}`);
   }
 
-  mesas(mesa: Mesa): Observable<Mesa> {
-    return this.http.post(`${this.API_URI}/mesa`, mesa).pipe(
-      tap(async (res: Mesa) => {
-        if (res) {
-          console.log(res);
-          this.authMesa.next(true);
-        }
-
-        /* */
-      })
-    );
-  }
-
   async logout() {
     await this.storage.remove("ACCESS_TOKEN");
     await this.storage.remove("EXPIRES_IN");
@@ -104,10 +81,6 @@ export class AuthService {
 
   get isLoggedIn() {
     return this.authSubject.asObservable();
-  }
-
-  get isMesaOk() {
-    return this.authMesa.asObservable();
   }
 
   get profileAdm() {

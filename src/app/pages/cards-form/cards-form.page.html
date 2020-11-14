@@ -1,0 +1,27 @@
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><ion-item>
+            <ion-button (click)="closeModal()" slot="end"><ion-icon slot="icon-only" name="close"></ion-icon></ion-button>
+          </ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item><ion-input type="text" name="id" placeholder="id" autofocus [(ngModel)]="card.id_carta"></ion-input></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item><ion-input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="card.nombre"></ion-input></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item><ion-textarea name="descripcion" placeholder="Descripción" rows="5" [(ngModel)]="card.descripcion"></ion-textarea></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item><ion-input type="text" name="horario" placeholder="Horario" [(ngModel)]="card.horario"></ion-input></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item><ion-input type="url" name="imagen" placeholder="Link Imagen" [(ngModel)]="card.imagen"></ion-input></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-button class="botonfiltro" expand="full" color="success" (click)="edit ? updateCard() : saveNewCard()"><p id="textofiltrar">Aceptar</p></ion-button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>

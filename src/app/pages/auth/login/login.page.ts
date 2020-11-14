@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
     //delete this.card.id; si quisieramos eliminar el id y configurarlo para que autoincrementará en postgres
     this.AuthService.login(this.user).subscribe(
       async res => {    
-        this.router.navigateByUrl('/mesa');
+        this.router.navigateByUrl('/statistics');
         this.user.password = '';
       },
       async err => {

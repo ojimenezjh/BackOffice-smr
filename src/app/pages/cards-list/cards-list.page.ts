@@ -1,151 +1,110 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
-import { ProductService } from "../../../services/product.service";
-import { CartService } from "../../../services/cart.service";
+import { CardsService } from '../../../services/cards.service'
+import { Card } from 'src/models/Card';
+import { CardsFormPage } from '../cards-form/cards-form.page';
 
-import { ModalController } from "@ionic/angular";
-import { ViewCardPage } from "./view-card/view-card.page";
-
-import { Product } from "src/models/Product";
-import { AppComponent } from "src/app/app.component";
-import { CartProduct } from "src/models/Cart/CartProduct";
-import { CartModalPage } from "../cart-modal/cart-modal.page";
-import { AuthService } from "src/services/auth.service";
+import { ModalController } from '@ionic/angular';
+import { ViewCardPage } from './view-card/view-card.page';
 
 @Component({
-  selector: "app-cards-list",
-  templateUrl: "./cards-list.page.html",
-  styleUrls: ["./cards-list.page.scss"],
+  selector: 'app-cards-list',
+  templateUrl: './cards-list.page.html',
+  styleUrls: ['./cards-list.page.scss'],
 })
 export class CardsListPage implements OnInit {
-  nombreCorp;
 
-  logoCorp;
+  cards: Card[] = [];
 
-  id_carta;
-
-  tipoVista: string = "General";
-
-  countCartProducts: Number;
-
-  searchBarOn: Boolean = true;
-
-  products: Product[] = [];
-
-  product: Product = {
-    id_producto: 0,
-    imagen: "",
-    producto: "",
-    familia: "",
-    tipoveg: 0,
-    gluten: false,
-    precio: 0,
-    descripcion: "",
-    posicion: 0,
+  card: Card = {
+    id_carta: 0,
+    nombre: '',
+    descripcion: '',
+    horario: '',
+    imagen: '',
+    posicion: 0
   };
 
-  cartProducts: CartProduct[] = [];
-
-  cartProduct: CartProduct = {
-    id_detalles_pedidos: 0,
-    id_pedido: 0,
-    id_producto: 0,
-    comentario: "",
-  };
-
-  constructor(
-    private productService: ProductService,
-    private modalController: ModalController,
-    private appComponent: AppComponent,
-    public cartModal: CartModalPage,
-    private authService: AuthService
-  ) {}
+  constructor(private cardsService: CardsService, private modalController: ModalController) { }
 
   ngOnInit() {
-    this.getProducts();
-    //this.login.getImg();
-    this.appComponent.subscriber$.subscribe((id_carta: Number) => {
-      this.id_carta = id_carta;
-      this.getDependingOnCart();
-    });
-    /*       this.cartModal.subscriber$.subscribe((countCartProducts:Number) => {
-        this.countCartProducts = countCartProducts;       
-      })    */
-    /*      this.login.subscriber$.subscribe((corp: Corp) => {
-        this.logoCorp = corp.logo;  
-        this.nombreCorp = corp.name;   
-      })   */
+    this.getCards();
   }
 
-  segmentChanged(ev: any) {
-    this.tipoVista = ev.detail.value;
-    console.log("Segment changed", ev.detail.value);
-  }
-
-  getProducts() {
-    this.productService.getProducts().subscribe(
-      (res) => {
-        this.cartModal.getCart();
-        this.products = res;
-        return (this.searchBarOn = true);
+  getCards(){
+    this.cardsService.getCards().subscribe(
+      res => {
+        this.cards = res;
       },
-      (err) => console.error(err)
+      err => console.error(err)
     );
   }
 
-  getProduct(id_carta: Number) {
-    //ESTE NO ES EL QUE SELECCIONA EL ID PARA EL MODAL, ESO ESTÁ DENTRO DEL MODAL. ESTE PODRÍA SERVIR PARA SELECCIONAR LOS PRODUCTOS A TRAVÉS DE LA CARTA SELECCIONADA.
-    this.productService.getProductsByCard(id_carta).subscribe(
-      (res) => {
-        this.cartModal.getCart();
-        console.log("carta", id_carta);
-        this.products = res;
-        console.log(this.products);
-        return (this.searchBarOn = false);
+  deleteCard(id: Number) {
+    this.cardsService.deleteCard(id).subscribe(
+      res => {
+        this.getCards();
       },
-
-      (err) => {
-        this.getProducts();
-        console.error(err);
-      }
-    );
+      err => console.log(err)
+    )
   }
 
-  searchChanged(producto: String) {
-    this.productService.searchProduct(producto).subscribe(
-      (res) => {
-        console.log("producto", producto);
-        this.products = res;
-        console.log(this.products);
+  getCard(id: Number){
+    this.cardsService.getCard(id).subscribe(
+      res => {
+        this.getCards();
+        console.log(res);
       },
-
-      (err) => {
-        this.getProducts();
-        console.error(err);
-      }
-    );
+      err => console.log(err)
+    )
   }
 
-  async viewModal(id_producto: number | String) {
+  async addModal(){
+    
     const modal = await this.modalController.create({
-      component: ViewCardPage,
-      componentProps: {
-        id_producto: id_producto,
-      },
+      component: CardsFormPage
     });
-    console.log(id_producto);
+
     modal.onWillDismiss().then((data) => {
-      this.getDependingOnCart();
+      this.getCards();
     });
 
     return await modal.present();
+
   }
 
-  getDependingOnCart() {
-    if (this.id_carta != 0) {
-      this.getProduct(this.id_carta);
-    } else if (this.id_carta == 0) {
-      this.getProducts();
-    }
+  async viewModal(idcard: number | String){
+    
+    const modal = await this.modalController.create({
+      component: ViewCardPage,
+      componentProps: {
+        idcard: idcard
+      }
+    });
+
+    modal.onWillDismiss().then((data) => {
+      this.getCards();
+    });
+
+    return await modal.present();
+
   }
+
+  async editModal(idcard: number | String) {
+    
+    const modal = await this.modalController.create({
+      component: CardsFormPage,
+      componentProps: {
+        idcard: idcard
+      }
+    });
+
+    modal.onWillDismiss().then((data) => {
+      this.getCards();
+    });
+
+    return await modal.present();
+
+  }
+
 }

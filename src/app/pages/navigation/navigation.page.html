@@ -1,39 +1,23 @@
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="presentPopover($event)">
-      <ion-icon name="filter-outline"></ion-icon>
-      <ion-label>Filtros</ion-label>
-    </ion-tab-button>
 
-    <ion-tab-button tab="about">
-      <ion-icon name="hand-left-outline"></ion-icon>
-      <ion-label>Camarero</ion-label>
-    </ion-tab-button>
+<ion-content>
 
-    <ion-tab-button (click)="viewModalCart()" #cart>
-      <ion-icon name="cart"></ion-icon>
-      <ion-badge>{{ countCartProducts }}</ion-badge>
-      <ion-label>Pedido</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
-<!--   <div>
+  <div>
 
   <nav>
     
-    <div class="cuadrologo" *ngFor="let corp of corps">
+    <div class="cuadrologo">
       <div class="clogo">
         <img class="logoempresa"
         alt="Dinkey Logo"
-        src="{{corp.logo}}"/>
+        src="{{logoCorp}}"/>
       </div>
 
       <div class="cnombre">
-        <p class="nombreempresa">{{corp.name}}</p>
+        <p class="nombreempresa">{{nombreCorp}}</p>
       </div>
     </div>
 
-    <ion-button *ngIf="isProfileAdm$ | async" class="botones noripple" expand="full" fill="solid" color="light">
+    <ion-button *ngIf="isProfileAdm$ | async" [routerLink]="['/statistics']" class="botones noripple" expand="full" fill="solid" color="light">
       <img class="imgfuncion"
       alt="Stats"
       src="./assets/button_stats.png"/>
@@ -68,4 +52,5 @@
     </ion-button>
  
   </nav>
-</div> -->
+</div>
+</ion-content>
