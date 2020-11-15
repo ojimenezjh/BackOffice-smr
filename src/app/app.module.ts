@@ -37,11 +37,30 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ChartsModule } from 'ng2-charts';
 import { LoginPage } from './pages/auth/login/login.page';
 
+// DevExtreme
+import { DxDataGridModule,
+  DxBulletModule,
+  DxTemplateModule } from 'devextreme-angular';
+  import { DxCheckBoxModule,
+    DxSelectBoxModule,
+    DxNumberBoxModule,
+    DxTreeListModule,
+    DxFormModule } from 'devextreme-angular';
+
 
 @NgModule({
   declarations: [AppComponent, NavigationPage, CardsListPage, RegisterPage, ViewCardPage, CardsFormPage, StatisticsPage ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot(), FormsModule, NoopAnimationsModule, DragDropModule, ChartsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot(), FormsModule, NoopAnimationsModule, DragDropModule, ChartsModule,
+    BrowserModule,
+    DxDataGridModule,
+    DxTemplateModule,
+    DxBulletModule,
+    DxCheckBoxModule,
+    DxSelectBoxModule,
+    DxNumberBoxModule,
+    DxFormModule,
+    DxTreeListModule],
   providers: [
     NFC,
     Ndef,

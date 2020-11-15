@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
+import DataSource from 'devextreme/data/data_source';
+
 import { CardsService } from '../../../services/cards.service'
 import { Card } from 'src/models/Card';
 import { CardsFormPage } from '../cards-form/cards-form.page';
@@ -14,6 +16,10 @@ import { ViewCardPage } from './view-card/view-card.page';
 })
 export class CardsListPage implements OnInit {
 
+  //dataSource: DataSource;
+
+  
+
   cards: Card[] = [];
 
   card: Card = {
@@ -24,6 +30,10 @@ export class CardsListPage implements OnInit {
     imagen: '',
     posicion: 0
   };
+
+  autoNavigateToFocusedRow = true;
+
+  focusedRowKey: number = 0;
 
   constructor(private cardsService: CardsService, private modalController: ModalController) { }
 
