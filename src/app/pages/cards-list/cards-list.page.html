@@ -201,6 +201,13 @@ group="tasksGroup"
 ></dxo-row-dragging>
 <!-- clone = true -->
 
+<dxo-editing
+[allowUpdating]="true"
+[allowAdding]="true"
+[allowDeleting]="true"
+mode="cell"> <!-- 'batch' | 'cell' | 'form' | 'popup' -->
+</dxo-editing>
+
 <dxo-paging [pageSize]="10"></dxo-paging>
 
 <dxo-search-panel
