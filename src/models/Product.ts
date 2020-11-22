@@ -11,3 +11,7 @@ export interface Product {
     posicion: number;
     precio?: number;
 }
+
+export interface Id_Producto {
+    id_producto: number;
+}

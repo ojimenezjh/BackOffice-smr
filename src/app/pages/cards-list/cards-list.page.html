@@ -46,13 +46,13 @@
       <h4>Mantenimiento de cartas</h4>
 
       <p></p>
-        <dx-form  id="form"
+<!--         <dx-form  id="form"
             [(formData)]="cards[grid.focusedRowIndex]"
             [readOnly]="false"
             [showColonAfterLabel]="true"
             [labelLocation]="'top'"
             [colCount]="3"
-      ></dx-form>
+      ></dx-form> -->
 
       <p></p>
 
@@ -66,13 +66,14 @@
     [focusedRowEnabled]="true"
     [(focusedRowIndex)]="focusedRowKey"
     [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
+    (onFocusedRowChanged)="getProductsByCard(cards[focusedRowKey].id_carta)"
    >
 
     <dxo-paging [pageSize]="10"></dxo-paging>
-    <dxo-pager
+<!--     <dxo-pager
         [showPageSizeSelector]="true"
         [allowedPageSizes]="[10, 25, 50, 100]"
-    ></dxo-pager>
+    ></dxo-pager> -->
     <dxo-search-panel
         [visible]="true"
         [highlightCaseSensitive]="true"
@@ -106,33 +107,37 @@
   <h4>Mantenimiento de cartas</h4>
 
   <p></p>
-    <dx-form  id="form"
-        [(formData)]="cards[grid.focusedRowIndex]"
+<!--     <dx-form  id="form"
+        [(formData)]="products[grid2.focusedRowIndex]"
         [readOnly]="false"
         [showColonAfterLabel]="true"
         [labelLocation]="'top'"
         [colCount]="3"
-  ></dx-form>
+  ></dx-form> -->
 
   <p></p>
 
-  <dx-data-grid #grid id="gridContainer"
-[dataSource]="cards"
+  <dx-data-grid #grid2 id="gridContainer2"
+[dataSource]="products"
 [remoteOperations]="false"
 [allowColumnReordering]="true"
 [rowAlternationEnabled]="true"
 [showBorders]="true"
-[keyExpr]="['id_carta']"
+[keyExpr]="['id_producto']"
 [focusedRowEnabled]="true"
-[(focusedRowIndex)]="focusedRowKey"
+[(focusedRowIndex)]="focusedRowKey2"
 [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
 >
 
+<dxo-row-dragging 
+[data]="allProducts"
+group="tasksGroup"
+[onAdd]="onAdd"
+[onDragStart]="onDisableDrag"
+[showDragIcons]="false"
+></dxo-row-dragging>
+
 <dxo-paging [pageSize]="10"></dxo-paging>
-<dxo-pager
-    [showPageSizeSelector]="true"
-    [allowedPageSizes]="[10, 25, 50, 100]"
-></dxo-pager>
 <dxo-search-panel
     [visible]="true"
     [highlightCaseSensitive]="true"
@@ -144,9 +149,9 @@
     [autoExpandAll]="false"
 ></dxo-grouping>
 
-<dxi-column dataField="id_carta" dataType="number" width="100px"></dxi-column>
+<dxi-column dataField="id_producto" dataType="number" width="100px"></dxi-column>
 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
-<dxi-column dataField="nombre" dataType="string"></dxi-column>
+<dxi-column dataField="producto" dataType="string"></dxi-column>
 <dxi-column dataField="descripcion" dataType="string"></dxi-column>
 
 <div *dxTemplate="let cell of 'cellTemplate'">
@@ -163,36 +168,41 @@
 <ion-col size="4">
 <div>
 
-  <h4>Mantenimiento de cartas</h4>
+  <h4>Mantenimiento de productos</h4>
 
   <p></p>
-    <dx-form  id="form"
+<!--     <dx-form  id="form"
         [(formData)]="cards[grid.focusedRowIndex]"
         [readOnly]="false"
         [showColonAfterLabel]="true"
         [labelLocation]="'top'"
         [colCount]="3"
-  ></dx-form>
+  ></dx-form> -->
 
   <p></p>
 
-  <dx-data-grid #grid id="gridContainer"
-[dataSource]="cards"
+  <dx-data-grid #grid3 id="gridContainer3"
+[dataSource]="allProducts"
 [remoteOperations]="false"
 [allowColumnReordering]="true"
 [rowAlternationEnabled]="true"
 [showBorders]="true"
-[keyExpr]="['id_carta']"
+[keyExpr]="['id_producto']"
 [focusedRowEnabled]="true"
-[(focusedRowIndex)]="focusedRowKey"
+[(selectedRowKeys)]="gridBoxValue"
 [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
+[selection]="{ mode: 'multiple' }"
 >
 
+<dxo-row-dragging
+[data]="allProducts"
+group="tasksGroup"
+[onDragStart]="onDragStart"
+></dxo-row-dragging>
+<!-- clone = true -->
+
 <dxo-paging [pageSize]="10"></dxo-paging>
-<dxo-pager
-    [showPageSizeSelector]="true"
-    [allowedPageSizes]="[10, 25, 50, 100]"
-></dxo-pager>
+
 <dxo-search-panel
     [visible]="true"
     [highlightCaseSensitive]="true"
@@ -204,9 +214,9 @@
     [autoExpandAll]="false"
 ></dxo-grouping>
 
-<dxi-column dataField="id_carta" dataType="number" width="100px"></dxi-column>
+<dxi-column dataField="id_producto" dataType="number" width="100px"></dxi-column>
 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
-<dxi-column dataField="nombre" dataType="string"></dxi-column>
+<dxi-column dataField="producto" dataType="string"></dxi-column>
 <dxi-column dataField="descripcion" dataType="string"></dxi-column>
 
 <div *dxTemplate="let cell of 'cellTemplate'">
