@@ -12,6 +12,7 @@ export interface Product {
     precio?: number;
 }
 
-export interface Id_Producto {
-    id_producto: number;
+export interface CartaProducto{
+    id_carta: number;
+    id_producto: string;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Id_Producto, Product } from "../models/Product";
+import { Product, CartaProducto } from "../models/Product";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -35,12 +35,12 @@ export class ProductService {
     return this.http.delete(`${this.API_URI}/products/${id_producto}`);
   }
 
-  saveProduct(product: Product) {
+ /*  saveProduct(product: Product) {
     return this.http.post(`${this.API_URI}/products`, product);
-  }
+  } */
 
-  insertProductToCard(id_carta: Number,id_productos: Id_Producto[]) {
-    return this.http.post(`${this.API_URI}/products/${id_carta}`, id_productos);
+  insertProductToCard(carta_productos: CartaProducto) {
+    return this.http.post(`${this.API_URI}/products`, carta_productos);
   }
 
   updateProduct(
