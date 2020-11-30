@@ -73,24 +73,24 @@
               </dxo-popup>
               <dxo-form>
                   <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                      <dxi-item dataField="FirstName"></dxi-item>
-                      <dxi-item dataField="LastName"></dxi-item>
-                      <dxi-item dataField="Prefix"></dxi-item>
-                      <dxi-item dataField="BirthDate"></dxi-item>
-                      <dxi-item dataField="Position"></dxi-item>
-                      <dxi-item dataField="HireDate"></dxi-item>
+                      <dxi-item dataField="id_carta"></dxi-item>
+                      <dxi-item dataField="nombre"></dxi-item>
+                      <dxi-item dataField="horario"></dxi-item>
                       <dxi-item
-                          dataField="Notes"
+                          dataField="descripcion"
                           editorType="dxTextArea"
                           [colSpan]="2"
                           [editorOptions]="{ height: 100 }">
                       </dxi-item>
                   </dxi-item>
                   
-                  <dxi-item itemType="group" caption="Home Address" [colCount]="2" [colSpan]="2">
-                      <dxi-item dataField="StateID"></dxi-item>
-                      <dxi-item dataField="Address"></dxi-item>
+                  <dxi-item itemType="group" caption="Imagen de la carta" [colSpan]="2">
+                    <!-- <dxi-item dataField="imagen" itemTemplate="itemTemplate" width="70px" height="48px"></dxi-item> -->
+                    <div *dxTemplate="let data of 'itemTemplate'">
+                      <img width="60px" height="48px" src="{{data.ImageSrc}}" />
+                    </div>
                   </dxi-item>
+
               </dxo-form>
                 </dxo-editing>
 
@@ -109,6 +109,7 @@
                 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
                 <dxi-column dataField="nombre" dataType="string"></dxi-column>
                 <dxi-column dataField="descripcion" dataType="string"></dxi-column>
+                <dxi-column dataField="horario" dataType="string" [visible] = "false" ></dxi-column>
 
                 <div *dxTemplate="let cell of 'cellTemplate'">
                   <img width="60px" height="48px" [src]="cell.value" />

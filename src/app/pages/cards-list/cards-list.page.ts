@@ -217,10 +217,10 @@ export class CardsListPage implements OnInit {
     console.log(e.element.id)
     var texto = '';
     if (e.element.id == "gridContainer") {
-      texto = '  Cartas'
+      texto = 'Cartas'
     }
     if (e.element.id == "gridContainer3") {
-      texto = '  Productos'
+      texto = 'Productos'
     }
     e.toolbarOptions.items.unshift({
       location: 'before',
@@ -246,7 +246,7 @@ export class CardsListPage implements OnInit {
       location: 'after',
       widget: 'dxButton',
       options: {
-        icon: 'close',
+        icon: 'trash',
         onClick: this.deleteDataGrid.bind(this, e)
       }
 
@@ -257,12 +257,12 @@ export class CardsListPage implements OnInit {
 
     e.toolbarOptions.items.unshift({
       location: 'before',
-      text: '  Carta Seleccionada'
+      text: 'Carta Seleccionada'
     }, {
       location: 'after',
       widget: 'dxButton',
       options: {
-        icon: 'close',
+        icon: 'trash',
         onClick: this.deleteDataGrid.bind(this, e)
       }
 
@@ -280,6 +280,7 @@ export class CardsListPage implements OnInit {
 
   editDataGrid(e) {
     if (e.element.id == "gridContainer") {
+      console.log(this.cards[this.focusedRowKey].horario)
       this.grid1.instance.editRow(this.focusedRowKey);
     }
     else if (e.element.id == "gridContainer3") {
@@ -298,5 +299,15 @@ export class CardsListPage implements OnInit {
       this.grid3.instance.deleteRow(this.focusedRowKey3);
     }
   }
+
+/*   imagenCarta(id:number){
+    console.log(this.cards[id]);
+    return this.cards[id].imagen;
+
+    for(let card of this.cards){
+      if(this.focusedRowKey = card.id_carta) return card.imagen;
+    }
+
+  } */
 
 }
