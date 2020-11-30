@@ -24,8 +24,9 @@ export class CardsListPage implements OnInit {
 
   //dataSource: DataSource;
 
-  @ViewChild ('grid1', { static: false }) grid1: DxDataGridComponent;
-  @ViewChild ('grid2', { static: false }) grid2: DxDataGridComponent;
+  @ViewChild('grid1', { static: false }) grid1: DxDataGridComponent;
+  @ViewChild('grid2', { static: false }) grid2: DxDataGridComponent;
+  @ViewChild('grid3', { static: false }) grid3: DxDataGridComponent;
 
   cards: Card[] = [];
 
@@ -62,6 +63,7 @@ export class CardsListPage implements OnInit {
 
   focusedRowKey: number = 0;
   focusedRowKey2: number = 0;
+  focusedRowKey3: number = 0;
   gridBoxValue: [] = [];
 
 
@@ -214,11 +216,11 @@ export class CardsListPage implements OnInit {
   onToolbarPreparing(e) {
     console.log(e.element.id)
     var texto = '';
-    if (e.element.id == "gridContainer"){
-      texto = 'Cartas'
+    if (e.element.id == "gridContainer") {
+      texto = '  Cartas'
     }
-    if (e.element.id == "gridContainer2"){
-      texto = 'Cartas-Productos'
+    if (e.element.id == "gridContainer3") {
+      texto = '  Productos'
     }
     e.toolbarOptions.items.unshift({
       location: 'before',
@@ -251,40 +253,49 @@ export class CardsListPage implements OnInit {
     });
   }
 
-  whatDataGrid(){
-    if (this.grid1){
-      return 1;
-    } else if (this.grid2){
-      return 2;
-    }
-    
-  }
+  onToolbarPreparing2(e) {
 
+    e.toolbarOptions.items.unshift({
+      location: 'before',
+      text: '  Carta Seleccionada'
+    }, {
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+        icon: 'close',
+        onClick: this.deleteDataGrid.bind(this, e)
+      }
+
+    });
+  }
   addDataGrid(e) {
-    if (e.element.id == "gridContainer"){
+    if (e.element.id == "gridContainer") {
       this.grid1.instance.addRow();
     }
-    else if (e.element.id == "gridContainer2") {
-      this.grid2.instance.addRow();
+    else if (e.element.id == "gridContainer3") {
+      this.grid3.instance.addRow();
     }
 
   }
 
   editDataGrid(e) {
-    if (e.element.id == "gridContainer"){
+    if (e.element.id == "gridContainer") {
       this.grid1.instance.editRow(this.focusedRowKey);
     }
-    else if (e.element.id == "gridContainer2") {
-    this.grid2.instance.editRow(this.focusedRowKey2);
+    else if (e.element.id == "gridContainer3") {
+      this.grid3.instance.editRow(this.focusedRowKey3);
     }
   }
 
   deleteDataGrid(e) {
-    if (e.element.id == "gridContainer"){
+    if (e.element.id == "gridContainer") {
       this.grid1.instance.deleteRow(this.focusedRowKey);
     }
     else if (e.element.id == "gridContainer2") {
-    this.grid2.instance.deleteRow(this.focusedRowKey2);
+      this.grid2.instance.deleteRow(this.focusedRowKey2);
+    }
+    else if (e.element.id == "gridContainer3") {
+      this.grid3.instance.deleteRow(this.focusedRowKey3);
     }
   }
 

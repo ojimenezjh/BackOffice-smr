@@ -43,7 +43,7 @@
           <ion-col size="4">
             <div>
 
-             
+
 
               <p></p>
               <!--         <dx-form  id="form"
@@ -64,6 +64,34 @@
                 (onToolbarPreparing)="onToolbarPreparing($event)">
 
                 <dxo-editing mode="popup">
+                  <dxo-popup
+                  title="Información de la carta"
+                  [showTitle]="true"
+                  [width]="700"
+                  [height]="525"
+                  [position]="{ my: 'center', at: 'center'}">
+              </dxo-popup>
+              <dxo-form>
+                  <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                      <dxi-item dataField="FirstName"></dxi-item>
+                      <dxi-item dataField="LastName"></dxi-item>
+                      <dxi-item dataField="Prefix"></dxi-item>
+                      <dxi-item dataField="BirthDate"></dxi-item>
+                      <dxi-item dataField="Position"></dxi-item>
+                      <dxi-item dataField="HireDate"></dxi-item>
+                      <dxi-item
+                          dataField="Notes"
+                          editorType="dxTextArea"
+                          [colSpan]="2"
+                          [editorOptions]="{ height: 100 }">
+                      </dxi-item>
+                  </dxi-item>
+                  
+                  <dxi-item itemType="group" caption="Home Address" [colCount]="2" [colSpan]="2">
+                      <dxi-item dataField="StateID"></dxi-item>
+                      <dxi-item dataField="Address"></dxi-item>
+                  </dxi-item>
+              </dxo-form>
                 </dxo-editing>
 
 
@@ -72,9 +100,10 @@
         [showPageSizeSelector]="true"
         [allowedPageSizes]="[10, 25, 50, 100]"
     ></dxo-pager> -->
-   
-<!--     <dxo-group-panel [visible]="true" emptyPanelText="Mantenimiento Cartas"></dxo-group-panel> -->
-                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar..."></dxo-search-panel>
+
+                <!--     <dxo-group-panel [visible]="true" emptyPanelText="Mantenimiento Cartas"></dxo-group-panel> -->
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar...">
+                </dxo-search-panel>
 
                 <dxi-column dataField="id_carta" dataType="number" width="100px"></dxi-column>
                 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
@@ -110,19 +139,20 @@
                 [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true"
                 [keyExpr]="['id_producto']" [focusedRowEnabled]="true" [(focusedRowIndex)]="focusedRowKey2"
                 [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
-                (onToolbarPreparing)="onToolbarPreparing($event)">
+                (onToolbarPreparing)="onToolbarPreparing2($event)">
 
                 <dxo-row-dragging [data]="allProducts" group="tasksGroup" [onAdd]="onAdd" [onDragStart]="onDisableDrag"
                   [showDragIcons]="false"></dxo-row-dragging>
 
                 <dxo-editing mode="popup">
-                  <!-- 'batch' | 'cell' | 'form' | 'popup' -->
+             
                 </dxo-editing>
 
                 <!-- <dxo-group-panel [visible]="true" [style.pointerEvents]="'none'" emptyPanelText="Mantenimiento Carta-Productos"></dxo-group-panel> -->
 
                 <dxo-paging [pageSize]="10"></dxo-paging>
-                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar...">
+                </dxo-search-panel>
 
                 <dxi-column dataField="id_producto" dataType="number" width="100px"></dxi-column>
                 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
@@ -156,8 +186,9 @@
 
               <dx-data-grid #grid3 id="gridContainer3" [dataSource]="allProducts" [remoteOperations]="false"
                 [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true"
-                [keyExpr]="['id_producto']" [focusedRowEnabled]="true" [(selectedRowKeys)]="gridBoxValue"
-                [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow" [selection]="{ mode: 'multiple' }">
+                [keyExpr]="['id_producto']" [focusedRowEnabled]="true"  [(focusedRowIndex)]="focusedRowKey3" [(selectedRowKeys)]="gridBoxValue"
+                [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow" [selection]="{ mode: 'multiple' }"
+                (onToolbarPreparing)="onToolbarPreparing($event)">
 
                 <dxo-row-dragging [data]="allProducts" group="tasksGroup" [onDragStart]="onDragStart">
                 </dxo-row-dragging>
@@ -166,12 +197,13 @@
                 <dxo-editing mode="popup">
                   <!-- 'batch' | 'cell' | 'form' | 'popup' -->
                 </dxo-editing>
-<!-- 
+                <!-- 
                 <dxo-group-panel [visible]="true" emptyPanelText="Mantenimiento Productos"></dxo-group-panel> -->
 
                 <dxo-paging [pageSize]="10"></dxo-paging>
 
-                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar...">
+                </dxo-search-panel>
 
                 <dxi-column dataField="id_producto" dataType="number" width="100px"></dxi-column>
                 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
