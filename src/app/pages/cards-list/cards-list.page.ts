@@ -12,6 +12,9 @@ import { Product, CartaProducto } from 'src/models/Product';
 import { ModalController } from '@ionic/angular';
 import { ViewCardPage } from './view-card/view-card.page';
 
+import { DxDataGridModule, DxButtonModule, DxDataGridComponent } from "devextreme-angular";
+import { ViewChild } from '@angular/core';
+
 @Component({
   selector: 'app-cards-list',
   templateUrl: './cards-list.page.html',
@@ -21,7 +24,8 @@ export class CardsListPage implements OnInit {
 
   //dataSource: DataSource;
 
-  
+  @ViewChild ('grid1', { static: false }) grid1: DxDataGridComponent;
+  @ViewChild ('grid2', { static: false }) grid2: DxDataGridComponent;
 
   cards: Card[] = [];
 
@@ -38,8 +42,8 @@ export class CardsListPage implements OnInit {
   allProducts: Product[] = [];
 
   cartaProducto: CartaProducto = {
-  id_carta: 0,
-  id_producto: ''
+    id_carta: 0,
+    id_producto: ''
   }
 
   product: Product = {
@@ -51,7 +55,7 @@ export class CardsListPage implements OnInit {
     gluten: false,
     descripcion: '',
     posicion: 0,
-    precio: 0,  
+    precio: 0,
   }
 
   autoNavigateToFocusedRow = true;
@@ -60,12 +64,12 @@ export class CardsListPage implements OnInit {
   focusedRowKey2: number = 0;
   gridBoxValue: [] = [];
 
-  
 
-  constructor(private cardsService: CardsService, private productService: ProductService, private modalController: ModalController) { 
+
+  constructor(private cardsService: CardsService, private productService: ProductService, private modalController: ModalController) {
     this.onAdd = this.onAdd.bind(this);
   }
-  
+
 
   ngOnInit() {
     this.getCards();
@@ -74,7 +78,7 @@ export class CardsListPage implements OnInit {
 
   //GETS-----------------------------------------------------
 
-  getCards(){
+  getCards() {
     this.cardsService.getCards().subscribe(
       res => {
         this.cards = res;
@@ -83,7 +87,7 @@ export class CardsListPage implements OnInit {
     );
   }
 
-  getCard(id: Number){
+  getCard(id: Number) {
     this.cardsService.getCard(id).subscribe(
       res => {
         this.getCards();
@@ -93,7 +97,7 @@ export class CardsListPage implements OnInit {
     )
   }
 
-  getProductsByCard(id_card: Number){
+  getProductsByCard(id_card: Number) {
     this.productService.getProductsByCard(id_card).subscribe(
       res => {
         this.products = res;
@@ -102,7 +106,7 @@ export class CardsListPage implements OnInit {
     )
   }
 
-  getProducts(){
+  getProducts() {
     this.productService.getProducts().subscribe(
       res => {
         this.allProducts = res;
@@ -115,11 +119,11 @@ export class CardsListPage implements OnInit {
 
   onAdd(e) {
     var id_productos = new Array();
-    for(this.product of this.gridBoxValue){ 
-      if (Array.isArray(id_productos)){
+    for (this.product of this.gridBoxValue) {
+      if (Array.isArray(id_productos)) {
         id_productos.push(this.product.id_producto);
       }
-    }  
+    }
     this.cartaProducto.id_carta = this.cards[this.focusedRowKey].id_carta;
     this.cartaProducto.id_producto = JSON.stringify(id_productos);
     this.productService.insertProductToCard(this.cartaProducto).subscribe(
@@ -133,7 +137,7 @@ export class CardsListPage implements OnInit {
 
   //DELETES-----------------------------------------------------
 
-  
+
   deleteCard(id: Number) {
     this.cardsService.deleteCard(id).subscribe(
       res => {
@@ -145,22 +149,22 @@ export class CardsListPage implements OnInit {
 
   //OTROS..............
 
-  onDragStart(e){
+  onDragStart(e) {
     let selectedRowKeys = e.component.getSelectedRowKeys(),
       numSelected = selectedRowKeys.length;
 
-      console.log(selectedRowKeys,numSelected);
-  
-        document.styleSheets[2].addRule('.dx-sortable-clone.dx-sortable-dragging:before',
-                                      'content: "'+numSelected+'"; background-color: green; color: white; padding: 2px 5px 2px 5px;');
+    console.log(selectedRowKeys, numSelected);
+
+    document.styleSheets[2].addRule('.dx-sortable-clone.dx-sortable-dragging:before',
+      'content: "' + numSelected + '"; background-color: green; color: white; padding: 2px 5px 2px 5px;');
   }
 
-  onDisableDrag(e){
-    e.cancel=true;
+  onDisableDrag(e) {
+    e.cancel = true;
   }
 
-  async addModal(){
-    
+  async addModal() {
+
     const modal = await this.modalController.create({
       component: CardsFormPage
     });
@@ -173,8 +177,8 @@ export class CardsListPage implements OnInit {
 
   }
 
-  async viewModal(idcard: number | String){
-    
+  async viewModal(idcard: number | String) {
+
     const modal = await this.modalController.create({
       component: ViewCardPage,
       componentProps: {
@@ -191,7 +195,7 @@ export class CardsListPage implements OnInit {
   }
 
   async editModal(idcard: number | String) {
-    
+
     const modal = await this.modalController.create({
       component: CardsFormPage,
       componentProps: {
@@ -205,6 +209,83 @@ export class CardsListPage implements OnInit {
 
     return await modal.present();
 
+  }
+
+  onToolbarPreparing(e) {
+    console.log(e.element.id)
+    var texto = '';
+    if (e.element.id == "gridContainer"){
+      texto = 'Cartas'
+    }
+    if (e.element.id == "gridContainer2"){
+      texto = 'Cartas-Productos'
+    }
+    e.toolbarOptions.items.unshift({
+      location: 'before',
+      text: texto
+    }, {
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+        icon: 'add',
+        onClick: this.addDataGrid.bind(this, e)
+
+      }
+    },
+      {
+        location: 'after',
+        widget: 'dxButton',
+        options: {
+          icon: 'edit',
+          onClick: this.editDataGrid.bind(this, e)
+        }
+
+      }, {
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+        icon: 'close',
+        onClick: this.deleteDataGrid.bind(this, e)
+      }
+
+    });
+  }
+
+  whatDataGrid(){
+    if (this.grid1){
+      return 1;
+    } else if (this.grid2){
+      return 2;
+    }
+    
+  }
+
+  addDataGrid(e) {
+    if (e.element.id == "gridContainer"){
+      this.grid1.instance.addRow();
+    }
+    else if (e.element.id == "gridContainer2") {
+      this.grid2.instance.addRow();
+    }
+
+  }
+
+  editDataGrid(e) {
+    if (e.element.id == "gridContainer"){
+      this.grid1.instance.editRow(this.focusedRowKey);
+    }
+    else if (e.element.id == "gridContainer2") {
+    this.grid2.instance.editRow(this.focusedRowKey2);
+    }
+  }
+
+  deleteDataGrid(e) {
+    if (e.element.id == "gridContainer"){
+      this.grid1.instance.deleteRow(this.focusedRowKey);
+    }
+    else if (e.element.id == "gridContainer2") {
+    this.grid2.instance.deleteRow(this.focusedRowKey2);
+    }
   }
 
 }
