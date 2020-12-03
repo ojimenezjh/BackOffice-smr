@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RegisterPage } from './pages/auth/register/register.page';
 import { CardsListPage } from './pages/cards-list/cards-list.page';
-import { CardsFormPage } from './pages/cards-form/cards-form.page';
+import { CardsFormPage } from './pages/cards-list/cards-form/cards-form.page';
 import { StatisticsPage } from './pages/statistics/statistics.page';
 import { AuthGuard } from './guards/auth.guard';
 import {TokenValidation} from '../libs/verifyToken'
@@ -39,6 +39,7 @@ const routes: Routes = [
     path: 'view-card',
     loadChildren: () => import('./pages/cards-list/view-card/view-card.module').then( m => m.ViewCardPageModule)
   },
+
 
 
  /*  {

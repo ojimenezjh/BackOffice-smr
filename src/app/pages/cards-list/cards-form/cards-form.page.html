@@ -1,4 +1,4 @@
-    <ion-card-content>
+   <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col><ion-item>
@@ -18,10 +18,30 @@
           <ion-col><ion-item><ion-input type="text" name="horario" placeholder="Horario" [(ngModel)]="card.horario"></ion-input></ion-item></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><ion-item><ion-input type="url" name="imagen" placeholder="Link Imagen" [(ngModel)]="card.imagen"></ion-input></ion-item></ion-col>
+          <ion-col><ion-item><ion-input type="url" name="imagen" placeholder="Link Imagen" [(ngModel)]="card.imagen"></ion-input></ion-item>
+            <input type="file" (change)="onFileSelected($event)"></ion-col>
         </ion-row>
         <ion-row>
           <ion-col><ion-button class="botonfiltro" expand="full" color="success" (click)="edit ? updateCard() : saveNewCard()"><p id="textofiltrar">Aceptar</p></ion-button></ion-col>
         </ion-row>
+
+      
+        
+      
+     <!--    <dx-list>
+        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+          <dxi-item dataField="id_carta"></dxi-item>
+          <dxi-item dataField="nombre"></dxi-item>
+          <dxi-item dataField="horario"></dxi-item>
+          <dxi-item
+              dataField="descripcion"
+              editorType="dxTextArea"
+              [colSpan]="2"
+              [editorOptions]="{ height: 100 }">
+          </dxi-item>
+      </dxi-item>
+    </dx-label> -->
       </ion-grid>
     </ion-card-content>
+    
+

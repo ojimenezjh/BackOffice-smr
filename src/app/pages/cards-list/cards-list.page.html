@@ -1,3 +1,4 @@
+
 <ion-content>
 
   <div class="contenido">
@@ -63,36 +64,7 @@
                 (onFocusedRowChanged)="getProductsByCard(cards[focusedRowKey].id_carta)"
                 (onToolbarPreparing)="onToolbarPreparing($event)">
 
-                <dxo-editing mode="popup">
-                  <dxo-popup
-                  title="Información de la carta"
-                  [showTitle]="true"
-                  [width]="700"
-                  [height]="525"
-                  [position]="{ my: 'center', at: 'center'}">
-              </dxo-popup>
-              <dxo-form>
-                  <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                      <dxi-item dataField="id_carta"></dxi-item>
-                      <dxi-item dataField="nombre"></dxi-item>
-                      <dxi-item dataField="horario"></dxi-item>
-                      <dxi-item
-                          dataField="descripcion"
-                          editorType="dxTextArea"
-                          [colSpan]="2"
-                          [editorOptions]="{ height: 100 }">
-                      </dxi-item>
-                  </dxi-item>
-                  
-                  <dxi-item itemType="group" caption="Imagen de la carta" [colSpan]="2">
-                    <!-- <dxi-item dataField="imagen" itemTemplate="itemTemplate" width="70px" height="48px"></dxi-item> -->
-                    <div *dxTemplate="let data of 'itemTemplate'">
-                      <img width="60px" height="48px" src="{{data.ImageSrc}}" />
-                    </div>
-                  </dxi-item>
 
-              </dxo-form>
-                </dxo-editing>
 
 
                 <dxo-paging [pageSize]="10"></dxo-paging>
@@ -109,7 +81,7 @@
                 <dxi-column dataField="imagen" cellTemplate="cellTemplate" width="70px" height="48px"></dxi-column>
                 <dxi-column dataField="nombre" dataType="string"></dxi-column>
                 <dxi-column dataField="descripcion" dataType="string"></dxi-column>
-                <dxi-column dataField="horario" dataType="string" [visible] = "false" ></dxi-column>
+                <dxi-column dataField="horario" dataType="string" [visible]="false"></dxi-column>
 
                 <div *dxTemplate="let cell of 'cellTemplate'">
                   <img width="60px" height="48px" [src]="cell.value" />
@@ -146,7 +118,7 @@
                   [showDragIcons]="false"></dxo-row-dragging>
 
                 <dxo-editing mode="popup">
-             
+
                 </dxo-editing>
 
                 <!-- <dxo-group-panel [visible]="true" [style.pointerEvents]="'none'" emptyPanelText="Mantenimiento Carta-Productos"></dxo-group-panel> -->
@@ -187,9 +159,9 @@
 
               <dx-data-grid #grid3 id="gridContainer3" [dataSource]="allProducts" [remoteOperations]="false"
                 [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true"
-                [keyExpr]="['id_producto']" [focusedRowEnabled]="true"  [(focusedRowIndex)]="focusedRowKey3" [(selectedRowKeys)]="gridBoxValue"
-                [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow" [selection]="{ mode: 'multiple' }"
-                (onToolbarPreparing)="onToolbarPreparing($event)">
+                [keyExpr]="['id_producto']" [focusedRowEnabled]="true" [(focusedRowIndex)]="focusedRowKey3"
+                [(selectedRowKeys)]="gridBoxValue" [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
+                [selection]="{ mode: 'multiple' }" (onToolbarPreparing)="onToolbarPreparing($event)">
 
                 <dxo-row-dragging [data]="allProducts" group="tasksGroup" [onDragStart]="onDragStart">
                 </dxo-row-dragging>

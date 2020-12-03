@@ -22,7 +22,7 @@ import { NavigationPage } from './pages/navigation/navigation.page';
 import { CardsListPage } from './pages/cards-list/cards-list.page';
 import { RegisterPage } from './pages/auth/register/register.page';
 import { ViewCardPage } from './pages/cards-list/view-card/view-card.page';
-import { CardsFormPage } from './pages/cards-form/cards-form.page';
+import { CardsFormPage } from './pages/cards-list/cards-form/cards-form.page';
 import { StatisticsPage } from './pages/statistics/statistics.page';
 
 // IMPORT SERVICES

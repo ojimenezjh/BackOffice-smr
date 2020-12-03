@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Card } from '../../../models/Card';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Card } from '../../../../models/Card';
 
-import { CardsService } from '../../../services/cards.service';
+import { CardsService } from '../../../../services/cards.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-cards-form',
@@ -40,6 +41,10 @@ export class CardsFormPage implements OnInit {
       err => console.error(err)
     )
     
+  }
+
+  onFileSelected(e){
+    console.log(e);
   }
 
   saveNewCard() {

@@ -4,7 +4,7 @@ import DataSource from 'devextreme/data/data_source';
 
 import { CardsService } from '../../../services/cards.service';
 import { Card } from 'src/models/Card';
-import { CardsFormPage } from '../cards-form/cards-form.page';
+import { CardsFormPage } from './cards-form/cards-form.page';
 
 import { ProductService } from '../../../services/product.service';
 import { Product, CartaProducto } from 'src/models/Product';
@@ -270,7 +270,8 @@ export class CardsListPage implements OnInit {
   }
   addDataGrid(e) {
     if (e.element.id == "gridContainer") {
-      this.grid1.instance.addRow();
+      this.addModal();
+      //this.grid1.instance.addRow();
     }
     else if (e.element.id == "gridContainer3") {
       this.grid3.instance.addRow();
@@ -280,8 +281,9 @@ export class CardsListPage implements OnInit {
 
   editDataGrid(e) {
     if (e.element.id == "gridContainer") {
-      console.log(this.cards[this.focusedRowKey].horario)
-      this.grid1.instance.editRow(this.focusedRowKey);
+      this.editModal(this.cards[this.focusedRowKey].id_carta);
+      /* console.log(this.cards[this.focusedRowKey].horario)
+      this.grid1.instance.editRow(this.focusedRowKey); */
     }
     else if (e.element.id == "gridContainer3") {
       this.grid3.instance.editRow(this.focusedRowKey3);
@@ -290,7 +292,7 @@ export class CardsListPage implements OnInit {
 
   deleteDataGrid(e) {
     if (e.element.id == "gridContainer") {
-      this.grid1.instance.deleteRow(this.focusedRowKey);
+      this.deleteCard(this.cards[this.focusedRowKey].id_carta);
     }
     else if (e.element.id == "gridContainer2") {
       this.grid2.instance.deleteRow(this.focusedRowKey2);
