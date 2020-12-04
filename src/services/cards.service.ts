@@ -15,23 +15,23 @@ export class CardsService {
     return this.http.get<Card[]>(`${this.API_URI}/cards`);
   }
 
-  getCard(id: Number) {
-    return this.http.get<Card>(`${this.API_URI}/cards/${id}`);
+  getCard(id_carta: Number) {
+    return this.http.get<Card>(`${this.API_URI}/cards/${id_carta}`);
   }
 
   searchCard(nombre: String) {
     return this.http.get<Card[]>(`${this.API_URI}/cards/name/${nombre}`);
   }
 
-  deleteCard(id: Number) {
-    return this.http.delete(`${this.API_URI}/cards/${id}`);
+  deleteCard(id_carta: Number) {
+    return this.http.delete(`${this.API_URI}/cards/${id_carta}`);
   }
 
   saveCard(card: Card) {
     return this.http.post(`${this.API_URI}/cards`, card);
   }
 
-  updateCard(id: String | Number, updatedCard: Card): Observable<Card> {
-    return this.http.put<Card>(`${this.API_URI}/cards/${id}`, updatedCard);
+  updateCard(id_carta: String | Number, updatedCard: Card): Observable<Card> {
+    return this.http.put<Card>(`${this.API_URI}/cards/${id_carta}`, updatedCard);
   }
 }

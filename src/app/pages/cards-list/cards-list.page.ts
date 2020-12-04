@@ -141,7 +141,8 @@ export class CardsListPage implements OnInit {
   //DELETES-----------------------------------------------------
 
 
-  deleteCard(id: Number) {
+  deleteCard(id: number) {
+    console.log(id)
     this.cardsService.deleteCard(id).subscribe(
       res => {
         this.getCards();
