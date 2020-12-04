@@ -9,11 +9,13 @@ import { CardsFormPage } from './cards-form/cards-form.page';
 import { ProductService } from '../../../services/product.service';
 import { Product, CartaProducto } from 'src/models/Product';
 
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from "@ionic/angular";
 import { ViewCardPage } from './view-card/view-card.page';
 
 import { DxDataGridModule, DxButtonModule, DxDataGridComponent } from "devextreme-angular";
 import { ViewChild } from '@angular/core';
+
+import { custom } from 'devextreme/ui/dialog';
 
 @Component({
   selector: 'app-cards-list',
@@ -69,7 +71,7 @@ export class CardsListPage implements OnInit {
 
 
 
-  constructor(private cardsService: CardsService, private productService: ProductService, private modalController: ModalController) {
+  constructor(private cardsService: CardsService, private productService: ProductService, private modalController: ModalController, private alertCtrl: AlertController) {
     this.onAdd = this.onAdd.bind(this);
   }
 
@@ -292,9 +294,28 @@ export class CardsListPage implements OnInit {
     }
   }
 
-  deleteDataGrid(e) {
+  async deleteDataGrid(e) {
     if (e.element.id == "gridContainer") {
-      this.deleteCard(this.cards[this.focusedRowKey].id_carta);
+      let alert = custom({
+        title: "Aviso",
+        message: "¿Desea borrar la carta?",
+        buttons: [
+          {
+            text: "Aceptar",
+            onClick: (e) => {
+              this.deleteCard(this.cards[this.focusedRowKey].id_carta);
+            },
+          },
+          { text: "Cancelar", 
+            onClick: (e) =>{ 
+               alert.hide();
+          },
+        },
+        ],
+      });
+      alert.show().then(() => {
+        
+      });
     }
     else if (e.element.id == "gridContainer2") {
       this.grid2.instance.deleteRow(this.focusedRowKey2);

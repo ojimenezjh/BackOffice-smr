@@ -17,13 +17,13 @@
         </ion-row>
         <ion-row>
           <ion-col>   
-            <input style="display: none" [(ngModel)]="card.hora_inicio" [ngxTimepicker]="picker" #timeImput1>        
-            <ngx-material-timepicker #picker></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora inicio" placeholder="Hora Inicio" [(ngModel)]="card.hora_inicio"></ion-input><ion-button fill="clear" (click)="timeImput1.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
+            <input style="display: none" [(ngModel)]="card.hora_inicio" [ngxTimepicker]="picker1" #timeImput1>        
+            <ngx-material-timepicker #picker1></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora inicio" placeholder="Hora Inicio" [(ngModel)]="card.hora_inicio"></ion-input><ion-button fill="clear" (click)="timeImput1.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
         </ion-row>
         <ion-row>
           <ion-col>   
-            <input style="display: none" [(ngModel)]="card.hora_fin" [ngxTimepicker]="picker" #timeImput2>        
-            <ngx-material-timepicker #picker></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora Fin" placeholder="Hora Fin" [(ngModel)]="card.hora_fin"></ion-input><ion-button fill="clear" (click)="timeImput2.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
+            <input style="display: none" [(ngModel)]="card.hora_fin" [ngxTimepicker]="picker2" #timeImput2>        
+            <ngx-material-timepicker #picker2></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora Fin" placeholder="Hora Fin" [(ngModel)]="card.hora_fin"></ion-input><ion-button fill="clear" (click)="timeImput2.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
