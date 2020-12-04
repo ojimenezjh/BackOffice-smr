@@ -8,9 +8,10 @@ const routes: Routes = [
     path: '',
     component: CardsListPage
   },  {
-    path: 'card-form',
-    loadChildren: () => import('./card-form/card-form.module').then( m => m.CardFormPageModule)
-  }
+    path: 'products-form',
+    loadChildren: () => import('./products-form/products-form.module').then( m => m.ProductsFormPageModule)
+  },
+
 
 ];
 

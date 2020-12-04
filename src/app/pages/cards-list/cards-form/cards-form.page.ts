@@ -44,7 +44,7 @@ export class CardsFormPage implements OnInit {
   }
 
   onFileSelected(e){
-    console.log(e);
+    (<File>e.target.files[0]);
   }
 
   saveNewCard() {
