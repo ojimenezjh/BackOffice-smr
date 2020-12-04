@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-cards-form',
   templateUrl: './cards-form.page.html',

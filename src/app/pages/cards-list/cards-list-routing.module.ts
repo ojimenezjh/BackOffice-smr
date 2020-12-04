@@ -7,10 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: CardsListPage
-  },  {
-    path: 'products-form',
-    loadChildren: () => import('./products-form/products-form.module').then( m => m.ProductsFormPageModule)
-  },
+  }
+
 
 
 ];

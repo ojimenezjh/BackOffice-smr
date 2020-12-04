@@ -16,3 +16,8 @@
     width: 100%;
     display: flex;
 }
+
+.ripple-parent {
+    position: relative;
+    overflow: hidden;
+  }

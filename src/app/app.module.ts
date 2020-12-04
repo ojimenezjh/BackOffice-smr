@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // FORMS NGMODEL
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common/';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 // IMPORT API
 import { HttpClientModule } from '@angular/common/http';
@@ -60,7 +61,8 @@ import { DxDataGridModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
     DxFormModule,
-    DxTreeListModule],
+    DxTreeListModule,
+    NgxMaterialTimepickerModule],
   providers: [
     NFC,
     Ndef,
