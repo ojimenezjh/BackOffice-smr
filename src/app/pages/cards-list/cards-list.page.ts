@@ -34,7 +34,8 @@ export class CardsListPage implements OnInit {
     id_carta: 0,
     nombre: '',
     descripcion: '',
-    horario: '',
+    hora_inicio: '',
+    hora_fin: '',
     imagen: '',
     posicion: 0
   };

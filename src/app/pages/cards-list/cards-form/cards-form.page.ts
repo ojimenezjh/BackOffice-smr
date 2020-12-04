@@ -20,11 +20,11 @@ export class CardsFormPage implements OnInit {
     id_carta: 0,
     nombre: '',
     descripcion: '',
-    horario: '',
+    hora_inicio: '',
+    hora_fin: '',
     imagen: '',
     posicion: 0
   };
-
   edit: boolean = false;
 
   constructor(private cardsService: CardsService, private router: Router, private activatedRoute: ActivatedRoute, private modalController: ModalController) { }

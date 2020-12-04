@@ -4,7 +4,8 @@ export interface Card {
     id_carta: number;
     nombre: string;
     descripcion?: string;
-    horario?: string;
+    hora_inicio?: string;
+    hora_fin?: string;
     imagen?: string;
     posicion: number;
 
