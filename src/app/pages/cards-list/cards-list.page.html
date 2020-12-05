@@ -67,7 +67,7 @@
 
 
 
-                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-paging *ngIf="cards.length > 10" [pageSize]="10"></dxo-paging>
                 <!--     <dxo-pager
         [showPageSizeSelector]="true"
         [allowedPageSizes]="[10, 25, 50, 100]"
@@ -123,7 +123,7 @@
 
                 <!-- <dxo-group-panel [visible]="true" [style.pointerEvents]="'none'" emptyPanelText="Mantenimiento Carta-Productos"></dxo-group-panel> -->
 
-                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-paging *ngIf="products.length > 10" [pageSize]="10"></dxo-paging>
                 <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar...">
                 </dxo-search-panel>
 
@@ -173,7 +173,7 @@
                 <!-- 
                 <dxo-group-panel [visible]="true" emptyPanelText="Mantenimiento Productos"></dxo-group-panel> -->
 
-                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-paging *ngIf="allProducts.length > 10" [pageSize]="10"></dxo-paging>
 
                 <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar...">
                 </dxo-search-panel>

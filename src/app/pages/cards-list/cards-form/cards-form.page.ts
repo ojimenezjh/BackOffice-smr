@@ -25,7 +25,11 @@ export class CardsFormPage implements OnInit {
     imagen: '',
     posicion: 0
   };
+
   edit: boolean = false;
+
+  selectedFile: any;
+
 
   constructor(private cardsService: CardsService, private router: Router, private activatedRoute: ActivatedRoute, private modalController: ModalController) { }
 
@@ -43,7 +47,12 @@ export class CardsFormPage implements OnInit {
   }
 
   onFileSelected(e){
-    (<File>e.target.files[0]);
+    this.selectedFile = (e.target.files[0]);
+  }
+
+  onSubmit(){
+    let form = new FormData;
+    form.append("imagen", this.selectedFile, this.selectedFile.name);
   }
 
   saveNewCard() {

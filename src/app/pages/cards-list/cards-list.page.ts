@@ -71,6 +71,7 @@ export class CardsListPage implements OnInit {
 
 
 
+
   constructor(private cardsService: CardsService, private productService: ProductService, private modalController: ModalController, private alertCtrl: AlertController) {
     this.onAdd = this.onAdd.bind(this);
   }
