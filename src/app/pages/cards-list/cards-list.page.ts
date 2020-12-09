@@ -16,6 +16,7 @@ import { DxDataGridModule, DxButtonModule, DxDataGridComponent } from "devextrem
 import { ViewChild } from '@angular/core';
 
 import { custom } from 'devextreme/ui/dialog';
+import { ProductsFormPage } from './products-form/products-form.page';
 
 @Component({
   selector: 'app-cards-list',
@@ -184,6 +185,20 @@ export class CardsListPage implements OnInit {
 
   }
 
+  async addModalProduct() {
+
+    const modal = await this.modalController.create({
+      component: ProductsFormPage
+    });
+
+    modal.onWillDismiss().then((data) => {
+      this.getProducts();
+    });
+
+    return await modal.present();
+
+  }
+
   async viewModal(idcard: number | String) {
 
     const modal = await this.modalController.create({
@@ -212,6 +227,23 @@ export class CardsListPage implements OnInit {
 
     modal.onWillDismiss().then((data) => {
       this.getCards();
+    });
+
+    return await modal.present();
+
+  }
+
+  async editModalProduct(idproduct: number | String) {
+
+    const modal = await this.modalController.create({
+      component: ProductsFormPage,
+      componentProps: {
+        idproduct : idproduct
+      }
+    });
+
+    modal.onWillDismiss().then((data) => {
+      this.getProducts();
     });
 
     return await modal.present();
@@ -279,7 +311,7 @@ export class CardsListPage implements OnInit {
       //this.grid1.instance.addRow();
     }
     else if (e.element.id == "gridContainer3") {
-      this.grid3.instance.addRow();
+      this.addModalProduct();
     }
 
   }
@@ -291,7 +323,7 @@ export class CardsListPage implements OnInit {
       this.grid1.instance.editRow(this.focusedRowKey); */
     }
     else if (e.element.id == "gridContainer3") {
-      this.grid3.instance.editRow(this.focusedRowKey3);
+      this.editModalProduct(this.products[this.focusedRowKey3].id_producto);
     }
   }
 

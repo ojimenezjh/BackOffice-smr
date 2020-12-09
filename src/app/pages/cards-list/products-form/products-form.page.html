@@ -1,9 +1,72 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>products-form</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<ion-card-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col><ion-item lines="none">
+        <ion-title>Añadir/Modificar Productos</ion-title>
+        <ion-button fill="clear" (click)="closeModal()" slot="end"><ion-icon slot="icon-only" name="close"></ion-icon></ion-button>
+      </ion-item></ion-col>
+    </ion-row>
+ <!--    <ion-row>
+      <ion-col><ion-item><ion-input type="text" name="id" placeholder="id" autofocus [(ngModel)]="card.id_carta"></ion-input></ion-item></ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col><ion-item><ion-input type="text" name="producto" placeholder="Producto" [(ngModel)]="producto.producto"></ion-input></ion-item></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-item><ion-textarea name="descripcion" placeholder="Descripción" rows="5" [(ngModel)]="producto.descripcion"></ion-textarea></ion-item></ion-col>
+    </ion-row>
+<!--     <ion-row>
+      <ion-col>   
+        <input style="display: none" [(ngModel)]="card.hora_inicio" [ngxTimepicker]="picker1" #timeImput1>        
+        <ngx-material-timepicker #picker1></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora inicio" placeholder="Hora Inicio" [(ngModel)]="card.hora_inicio"></ion-input><ion-button fill="clear" (click)="timeImput1.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>   
+        <input style="display: none" [(ngModel)]="card.hora_fin" [ngxTimepicker]="picker2" #timeImput2>        
+        <ngx-material-timepicker #picker2></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora Fin" placeholder="Hora Fin" [(ngModel)]="card.hora_fin"></ion-input><ion-button fill="clear" (click)="timeImput2.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-item lines="none"><input type="file" (change)="onFileSelected($event)"></ion-item>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>  
+ <!--    <dx-list>
+    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+      <dxi-item dataField="id_carta"></dxi-item>
+      <dxi-item dataField="nombre"></dxi-item>
+      <dxi-item dataField="horario"></dxi-item>
+      <dxi-item
+          dataField="descripcion"
+          editorType="dxTextArea"
+          [colSpan]="2"
+          [editorOptions]="{ height: 100 }">
+      </dxi-item>
+  </dxi-item>
+</dx-label> -->
+  </ion-grid>
+  <!-- <ion-button class="botonfiltro" expand="full" color="primary" (click)="edit ? updateProduct() : saveNewProduct()"><p id="textofiltrar">Aceptar</p></ion-button> -->
+  <ion-button class="botonfiltro" expand="full" color="primary" ><p id="textofiltrar">Aceptar</p></ion-button>
+</ion-card-content>
