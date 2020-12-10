@@ -38,6 +38,12 @@
       <ion-col></ion-col>
     </ion-row>
     <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col><ion-item lines="none"><input type="file" (change)="onFileSelected($event)"></ion-item>
         </ion-col>
     </ion-row>
@@ -52,7 +58,13 @@
     </ion-row>
     <ion-row>
       <ion-col></ion-col>
-    </ion-row>  
+    </ion-row> 
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row> 
  <!--    <dx-list>
     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
       <dxi-item dataField="id_carta"></dxi-item>
@@ -67,6 +79,5 @@
   </dxi-item>
 </dx-label> -->
   </ion-grid>
-  <!-- <ion-button class="botonfiltro" expand="full" color="primary" (click)="edit ? updateProduct() : saveNewProduct()"><p id="textofiltrar">Aceptar</p></ion-button> -->
-  <ion-button class="botonfiltro" expand="full" color="primary" ><p id="textofiltrar">Aceptar</p></ion-button>
+  <ion-button class="botonfiltro" expand="full" color="primary" (click)="edit ? updateProduct() : saveNewProduct()"><p id="textofiltrar">Aceptar</p></ion-button>
 </ion-card-content>

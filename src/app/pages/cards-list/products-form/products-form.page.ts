@@ -22,8 +22,8 @@ export class ProductsFormPage implements OnInit {
     imagen: '',
     producto: '',
     familia: '',
-    tipoveg: 0,
-    gluten: false,
+    tipoveg: 1,
+    gluten: 0,
     descripcion: '',
     posicion: 0,
     precio: 0,
@@ -64,15 +64,14 @@ export class ProductsFormPage implements OnInit {
 
   saveNewProduct() {
     //delete this.producto.id; si quisieramos eliminar el id y configurarlo para que autoincrementará en postgres
-    
-/*     this.cardsService.saveCard(this.card).subscribe(
+    console.log(this.producto);
+/*     this.productService.saveProduct(this.producto).subscribe(
       res => {
         console.log(res);
         this.closeModal();
       },
       err => console.error(err)
     ); */
-
   }
 
   async closeModal(){

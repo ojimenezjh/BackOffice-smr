@@ -57,7 +57,7 @@ export class CardsListPage implements OnInit {
     producto: '',
     familia: '',
     tipoveg: 0,
-    gluten: false,
+    gluten: 0,
     descripcion: '',
     posicion: 0,
     precio: 0,
@@ -238,7 +238,7 @@ export class CardsListPage implements OnInit {
     const modal = await this.modalController.create({
       component: ProductsFormPage,
       componentProps: {
-        idproduct : idproduct
+        idproduct: idproduct
       }
     });
 

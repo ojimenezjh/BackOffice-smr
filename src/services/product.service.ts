@@ -35,9 +35,9 @@ export class ProductService {
     return this.http.delete(`${this.API_URI}/products/${id_producto}`);
   }
 
- /*  saveProduct(product: Product) {
-    return this.http.post(`${this.API_URI}/products`, product);
-  } */
+  saveProduct(product: Product) {
+    return this.http.post(`${this.API_URI}/products/save`, product);
+  }
 
   insertProductToCard(carta_productos: CartaProducto) {
     return this.http.post(`${this.API_URI}/products`, carta_productos);

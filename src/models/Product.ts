@@ -6,7 +6,7 @@ export interface Product {
     producto?: string;
     familia?: string;
     tipoveg: number;
-    gluten: boolean;
+    gluten: number;
     descripcion: string;
     posicion: number;
     precio?: number;
