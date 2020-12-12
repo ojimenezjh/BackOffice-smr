@@ -142,7 +142,7 @@ export class CardsListPage implements OnInit {
     )
   }
 
-  //DELETES-----------------------------------------------------
+  //#region DELETES-----------------------------------------------------
 
 
   deleteCard(id: number) {
@@ -174,6 +174,8 @@ export class CardsListPage implements OnInit {
       err => console.log(err)
     )
   }
+
+  //#endregion
 
   //OTROS..............
 
