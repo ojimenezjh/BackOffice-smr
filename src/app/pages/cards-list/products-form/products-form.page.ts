@@ -64,14 +64,13 @@ export class ProductsFormPage implements OnInit {
 
   saveNewProduct() {
     //delete this.producto.id; si quisieramos eliminar el id y configurarlo para que autoincrementará en postgres
-    console.log(this.producto);
-/*     this.productService.saveProduct(this.producto).subscribe(
+     this.productService.saveProduct(this.producto).subscribe(
       res => {
         console.log(res);
         this.closeModal();
       },
       err => console.error(err)
-    ); */
+    ); 
   }
 
   async closeModal(){

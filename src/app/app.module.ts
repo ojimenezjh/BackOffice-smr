@@ -25,6 +25,7 @@ import { RegisterPage } from './pages/auth/register/register.page';
 import { ViewCardPage } from './pages/cards-list/view-card/view-card.page';
 import { CardsFormPage } from './pages/cards-list/cards-form/cards-form.page';
 import { StatisticsPage } from './pages/statistics/statistics.page';
+import { ProductsFormPage } from './pages/cards-list/products-form/products-form.page';
 
 // IMPORT SERVICES
 import { ProductService } from '../services/product.service';
@@ -41,16 +42,15 @@ import { LoginPage } from './pages/auth/login/login.page';
 // DevExtreme
 import { DxDataGridModule,
   DxBulletModule,
-  DxTemplateModule } from 'devextreme-angular';
-  import { DxCheckBoxModule,
-    DxSelectBoxModule,
-    DxNumberBoxModule,
-    DxTreeListModule,
-    DxFormModule } from 'devextreme-angular';
-
+  DxTemplateModule,
+  DxCheckBoxModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxTreeListModule,
+  DxFormModule } from 'devextreme-angular';
 
 @NgModule({
-  declarations: [AppComponent, NavigationPage, CardsListPage, RegisterPage, ViewCardPage, CardsFormPage, StatisticsPage ],
+  declarations: [AppComponent, NavigationPage, CardsListPage, RegisterPage, ViewCardPage, CardsFormPage, StatisticsPage, ProductsFormPage ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot(), FormsModule, NoopAnimationsModule, DragDropModule, ChartsModule,
     BrowserModule,

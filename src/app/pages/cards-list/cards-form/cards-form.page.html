@@ -25,34 +25,13 @@
             <input style="display: none" [(ngModel)]="card.hora_fin" [ngxTimepicker]="picker2" #timeImput2>        
             <ngx-material-timepicker #picker2></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora Fin" placeholder="Hora Fin" [(ngModel)]="card.hora_fin"></ion-input><ion-button fill="clear" (click)="timeImput2.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
         </ion-row>
+    
         <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col><ion-item lines="none"><input type="file" (change)="onFileSelected($event)"></ion-item>
+          <ion-col><ion-item lines="none"><input type="file" (change)="onFileSelected($event)"><img width="150" height="130" [src]="card.imagen"></ion-item>
+            
             </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-        </ion-row>  
+      
      <!--    <dx-list>
         <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
           <dxi-item dataField="id_carta"></dxi-item>

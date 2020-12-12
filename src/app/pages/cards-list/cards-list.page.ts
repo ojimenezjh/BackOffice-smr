@@ -1,7 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
-import DataSource from 'devextreme/data/data_source';
-
 import { CardsService } from '../../../services/cards.service';
 import { Card } from 'src/models/Card';
 import { CardsFormPage } from './cards-form/cards-form.page';
@@ -12,7 +10,7 @@ import { Product, CartaProducto } from 'src/models/Product';
 import { ModalController, AlertController } from "@ionic/angular";
 import { ViewCardPage } from './view-card/view-card.page';
 
-import { DxDataGridModule, DxButtonModule, DxDataGridComponent } from "devextreme-angular";
+import { DxDataGridComponent } from "devextreme-angular";
 import { ViewChild } from '@angular/core';
 
 import { custom } from 'devextreme/ui/dialog';
@@ -70,8 +68,10 @@ export class CardsListPage implements OnInit {
   focusedRowKey3: number = 0;
   gridBoxValue: [] = [];
 
+  pageIndex;
+  realFocusIndex;
 
-
+  numRows: number = 10;
 
   constructor(private cardsService: CardsService, private productService: ProductService, private modalController: ModalController, private alertCtrl: AlertController) {
     this.onAdd = this.onAdd.bind(this);
@@ -150,6 +150,26 @@ export class CardsListPage implements OnInit {
     this.cardsService.deleteCard(id).subscribe(
       res => {
         this.getCards();
+      },
+      err => console.log(err)
+    )
+  }
+
+  deleteProductInCard(id_carta: number, id_producto: number) {
+    console.log(id_carta, id_producto);
+    this.productService.deleteProductInCard(id_carta, id_producto).subscribe(
+      res => {
+        this.getProductsByCard(id_carta);
+      },
+      err => console.log(err)
+    )
+  }
+
+  deleteProduct(id: number) {
+    console.log(id)
+    this.productService.deleteProduct(id).subscribe(
+      res => {
+        this.getProducts();
       },
       err => console.log(err)
     )
@@ -318,16 +338,21 @@ export class CardsListPage implements OnInit {
 
   editDataGrid(e) {
     if (e.element.id == "gridContainer") {
-      this.editModal(this.cards[this.focusedRowKey].id_carta);
+      this.pageIndex = e.component.pageIndex();
+      this.realFocusIndex = (this.pageIndex * this.numRows) + this.focusedRowKey;
+      this.editModal(this.cards[this.realFocusIndex].id_carta);
       /* console.log(this.cards[this.focusedRowKey].horario)
       this.grid1.instance.editRow(this.focusedRowKey); */
     }
     else if (e.element.id == "gridContainer3") {
-      this.editModalProduct(this.products[this.focusedRowKey3].id_producto);
+      this.pageIndex = e.component.pageIndex();
+      this.realFocusIndex = (this.pageIndex * this.numRows) + this.focusedRowKey3;
+      this.editModalProduct(this.allProducts[this.realFocusIndex].id_producto);
     }
   }
 
   async deleteDataGrid(e) {
+    this.pageIndex = e.component.pageIndex();
     if (e.element.id == "gridContainer") {
       let alert = custom({
         title: "Aviso",
@@ -336,36 +361,82 @@ export class CardsListPage implements OnInit {
           {
             text: "Aceptar",
             onClick: (e) => {
+              this.realFocusIndex = (this.pageIndex * this.numRows) + this.focusedRowKey;
               this.deleteCard(this.cards[this.focusedRowKey].id_carta);
             },
           },
-          { text: "Cancelar", 
-            onClick: (e) =>{ 
-               alert.hide();
+          {
+            text: "Cancelar",
+            onClick: (e) => {
+              alert.hide();
+            },
           },
-        },
         ],
       });
       alert.show().then(() => {
-        
+
       });
     }
     else if (e.element.id == "gridContainer2") {
-      this.grid2.instance.deleteRow(this.focusedRowKey2);
+      let alert = custom({
+        title: "Aviso",
+        message: "¿Desea borrar el producto de la carta?",
+        buttons: [
+          {
+            text: "Aceptar",
+            onClick: (e) => {
+              var pageIndexCard = this.grid1.instance.pageIndex();
+              var realFocusIndexCarta = (pageIndexCard * this.numRows) + this.focusedRowKey;
+              this.realFocusIndex = (this.pageIndex * this.numRows) + this.focusedRowKey2;
+              this.deleteProductInCard(this.cards[realFocusIndexCarta].id_carta, this.products[this.realFocusIndex].id_producto);
+            },
+          },
+          {
+            text: "Cancelar",
+            onClick: (e) => {
+              alert.hide();
+            },
+          },
+        ],
+      });
+      alert.show().then(() => {
+
+      });
     }
     else if (e.element.id == "gridContainer3") {
-      this.grid3.instance.deleteRow(this.focusedRowKey3);
+      let alert = custom({
+        title: "Aviso",
+        message: "¿Desea borrar el producto?",
+        buttons: [
+          {
+            text: "Aceptar",
+            onClick: (e) => {
+              this.realFocusIndex = (this.pageIndex * this.numRows) + this.focusedRowKey3;
+              this.deleteProduct(this.allProducts[this.realFocusIndex].id_producto);
+            },
+          },
+          {
+            text: "Cancelar",
+            onClick: (e) => {
+              alert.hide();
+            },
+          },
+        ],
+      });
+      alert.show().then(() => {
+
+      });
     }
   }
 
-/*   imagenCarta(id:number){
-    console.log(this.cards[id]);
-    return this.cards[id].imagen;
-
-    for(let card of this.cards){
-      if(this.focusedRowKey = card.id_carta) return card.imagen;
-    }
-
-  } */
+  /*   imagenCarta(id:number){
+      console.log(this.cards[id]);
+      return this.cards[id].imagen;
+  
+      for(let card of this.cards){
+        if(this.focusedRowKey = card.id_carta) return card.imagen;
+      }
+  
+    } */
 
 }

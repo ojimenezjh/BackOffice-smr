@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 export class ProductService {
   API_URI = "http://82.223.128.240:3000/api";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProducts() {
     return this.http.get<Product[]>(`${this.API_URI}/products`);
@@ -41,6 +41,10 @@ export class ProductService {
 
   insertProductToCard(carta_productos: CartaProducto) {
     return this.http.post(`${this.API_URI}/products`, carta_productos);
+  }
+
+  deleteProductInCard(id_carta: Number, id_producto: Number) {
+    return this.http.delete(`${this.API_URI}/products/carta/${id_carta}/${id_producto}`);
   }
 
   updateProduct(

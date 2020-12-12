@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Card } from '../../../../models/Card';
 
 import { CardsService } from '../../../../services/cards.service';
@@ -14,6 +14,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class CardsFormPage implements OnInit {
 
+  @Output() onFileSelect: EventEmitter<Object> = new EventEmitter();
   @Input() idcard: number | String;
 
   card: Card = {
@@ -48,11 +49,23 @@ export class CardsFormPage implements OnInit {
 
   onFileSelected(e){
     this.selectedFile = (e.target.files[0]);
+    this.card.imagen = this.selectedFile.name;
+
+    //Preview
+    if (this.selectedFile){
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.card.imagen = reader.result as string;
+        console.log(this.card.imagen)
+      };
+      reader.readAsDataURL(this.selectedFile);
+      //this.onFileSelect.emit(this.selectedFile);
+    }
   }
 
+
   onSubmit(){
-    let form = new FormData;
-    form.append("imagen", this.selectedFile, this.selectedFile.name);
+    
   }
 
   saveNewCard() {

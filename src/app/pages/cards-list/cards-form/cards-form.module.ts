@@ -12,12 +12,12 @@ import { CardsFormPage } from './cards-form.page';
 
 import { DxDataGridModule,
   DxBulletModule,
-  DxTemplateModule } from 'devextreme-angular';
-  import { DxCheckBoxModule,
-    DxSelectBoxModule,
-    DxNumberBoxModule,
-    DxTreeListModule,
-    DxFormModule } from 'devextreme-angular';
+  DxTemplateModule,
+  DxCheckBoxModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxTreeListModule,
+  DxFormModule  } from 'devextreme-angular';
 
 @NgModule({
   imports: [

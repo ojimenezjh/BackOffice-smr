@@ -1,4 +1,3 @@
-
 <ion-content>
 
   <div class="contenido">
@@ -163,11 +162,12 @@
                 [(selectedRowKeys)]="gridBoxValue" [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
                 [selection]="{ mode: 'multiple' }" (onToolbarPreparing)="onToolbarPreparing($event)">
 
+                <dxo-selection [showCheckBoxesMode]="'always'" mode="multiple"> </dxo-selection>
                 <dxo-row-dragging [data]="allProducts" group="tasksGroup" [onDragStart]="onDragStart">
                 </dxo-row-dragging>
                 <!-- clone = true -->
 
-  <!--               <dxo-editing mode="popup">
+                <!--               <dxo-editing mode="popup">
                   'batch' | 'cell' | 'form' | 'popup'
                 </dxo-editing> -->
                 <!-- 

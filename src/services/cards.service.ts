@@ -34,4 +34,11 @@ export class CardsService {
   updateCard(id_carta: String | Number, updatedCard: Card): Observable<Card> {
     return this.http.put<Card>(`${this.API_URI}/cards/${id_carta}`, updatedCard);
   }
+
+  postFile(fileToUpload: File){
+    const endpoint = 'http://82.223.128.240:3000/uploadedFiles/'
+    const formData = new FormData;
+    formData.append("imagen", fileToUpload, fileToUpload.name);
+    return this.http.post(endpoint, formData)
+  }
 }
