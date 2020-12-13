@@ -14,7 +14,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item>
+        <ion-item class="tipoveg">
           <ion-label>Apto para vegetarianos:</ion-label>
           <ion-select name="tipoveg" placeholder="Elija uno" [(ngModel)]="producto.tipoveg">
             <ion-select-option [value]="1">No apto</ion-select-option>
@@ -32,7 +32,7 @@
       <ion-col><ion-item><ion-label>Descripción:</ion-label><ion-textarea name="descripcion" placeholder="Escriba la descripción" rows="5" [(ngModel)]="producto.descripcion"></ion-textarea></ion-item></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col><ion-item><ion-label>Precio:</ion-label><ion-input type="number" name="precio" placeholder="Escriba el precio del producto" [(ngModel)]="producto.precio"></ion-input><ion-label>€</ion-label></ion-item></ion-col>
+      <ion-col><ion-item><ion-label>Precio:</ion-label><ion-input class="precio" type="number" name="precio" placeholder="Escriba el precio del producto" [(ngModel)]="producto.precio"></ion-input><ion-label>€</ion-label></ion-item></ion-col>
     </ion-row>
 <!--     <ion-row>
       <ion-col>   
