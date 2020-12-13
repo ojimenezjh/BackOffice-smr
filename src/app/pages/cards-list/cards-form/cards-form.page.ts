@@ -14,7 +14,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class CardsFormPage implements OnInit {
 
-  @Output() onFileSelect: EventEmitter<Object> = new EventEmitter();
+  //@Output() onFileSelect: EventEmitter<Object> = new EventEmitter();
   @Input() idcard: number | String;
 
   card: Card = {
@@ -29,7 +29,7 @@ export class CardsFormPage implements OnInit {
 
   edit: boolean = false;
 
-  selectedFile: any;
+  //selectedFile: any;
 
 
   constructor(private cardsService: CardsService, private router: Router, private activatedRoute: ActivatedRoute, private modalController: ModalController) { }
@@ -47,9 +47,9 @@ export class CardsFormPage implements OnInit {
     
   }
 
-  onFileSelected(e){
-    this.selectedFile = (e.target.files[0]);
-    this.card.imagen = this.selectedFile.name;
+/*   onFileSelected(e){
+    this.selectedFile = (<File>e.target.files[0]);
+    this.card.imagen = this.selectedFile.data;
 
     //Preview
     if (this.selectedFile){
@@ -61,16 +61,15 @@ export class CardsFormPage implements OnInit {
       reader.readAsDataURL(this.selectedFile);
       //this.onFileSelect.emit(this.selectedFile);
     }
-  }
+  } */
 
 
-  onSubmit(){
-    
-  }
+  /* onSubmit(){
+
+  } */
 
   saveNewCard() {
     //delete this.card.id; si quisieramos eliminar el id y configurarlo para que autoincrementará en postgres
-    
     this.cardsService.saveCard(this.card).subscribe(
       res => {
         console.log(res);
@@ -82,6 +81,7 @@ export class CardsFormPage implements OnInit {
   }
 
   updateCard() {
+   // this.cardsService.postFile(this.selectedFile).subscribe(res => {console.log(res)}, err => console.error(err));
     this.cardsService.updateCard(this.card.id_carta, this.card).subscribe(
       res => { 
         console.log(res);

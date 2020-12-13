@@ -15,16 +15,16 @@
     <ion-row>
       <ion-item>
       <ion-col>
-        <ion-item class="tipoveg" lines="none">
+        <ion-item lines="none">
           <ion-label>Apto para vegetarianos:</ion-label>
-          <ion-select name="tipoveg" placeholder="Elija uno" [(ngModel)]="producto.tipoveg">
+          <ion-select class="tipoveg" name="tipoveg" placeholder="Elija uno" [(ngModel)]="producto.tipoveg">
             <ion-select-option [value]="1">No apto</ion-select-option>
             <ion-select-option [value]="2">Vegetariano</ion-select-option>
             <ion-select-option [value]="3">Vegano</ion-select-option>
           </ion-select>
+          <ion-label>Contiene gluten:</ion-label><ion-checkbox [(ngModel)]="gluten"></ion-checkbox>
         </ion-item>
       </ion-col>
-      <ion-col><ion-item lines="none"><ion-label>Contiene gluten:</ion-label><ion-label></ion-label><ion-checkbox [(ngModel)]="gluten"></ion-checkbox></ion-item></ion-col>
     </ion-item>
     </ion-row>
 <!--     <ion-row>
