@@ -10,25 +10,34 @@
           <ion-col><ion-item><ion-input type="text" name="id" placeholder="id" autofocus [(ngModel)]="card.id_carta"></ion-input></ion-item></ion-col>
         </ion-row> -->
         <ion-row>
-          <ion-col><ion-item><ion-input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="card.nombre"></ion-input></ion-item></ion-col>
+          <ion-col><ion-item><ion-label>Nombre de la carta:</ion-label><ion-input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="card.nombre"></ion-input></ion-item></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><ion-item><ion-textarea name="descripcion" placeholder="Descripción" rows="5" [(ngModel)]="card.descripcion"></ion-textarea></ion-item></ion-col>
+          <ion-col><ion-item><ion-label>Descripción:</ion-label><ion-textarea name="descripcion" placeholder="Descripción" rows="5" [(ngModel)]="card.descripcion"></ion-textarea></ion-item></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>   
+          <ion-col>
+            <ion-item>
+            <ion-label>Hora inicio:</ion-label>   
             <input style="display: none" [(ngModel)]="card.hora_inicio" [ngxTimepicker]="picker1" #timeImput1>        
-            <ngx-material-timepicker #picker1></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora inicio" placeholder="Hora Inicio" [(ngModel)]="card.hora_inicio"></ion-input><ion-button fill="clear" (click)="timeImput1.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
+            <ngx-material-timepicker #picker1></ngx-material-timepicker><ion-input type="text" name="Hora inicio" placeholder="Hora Inicio" [(ngModel)]="card.hora_inicio"></ion-input><ion-button fill="clear" (click)="timeImput1.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item>
+          </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>   
+          <ion-col> 
+            <ion-item>
+            <ion-label>Hora fin:</ion-label>  
             <input style="display: none" [(ngModel)]="card.hora_fin" [ngxTimepicker]="picker2" #timeImput2>        
-            <ngx-material-timepicker #picker2></ngx-material-timepicker><ion-item><ion-input type="text" name="Hora Fin" placeholder="Hora Fin" [(ngModel)]="card.hora_fin"></ion-input><ion-button fill="clear" (click)="timeImput2.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
+            <ngx-material-timepicker #picker2></ngx-material-timepicker><ion-input type="text" name="Hora Fin" placeholder="Hora Fin" [(ngModel)]="card.hora_fin"></ion-input><ion-button fill="clear" (click)="timeImput2.click()"><ion-icon slot="icon-only" name="time-outline"></ion-icon></ion-button></ion-item></ion-col>
         </ion-row>
     
         <ion-row>
-          <ion-col><ion-item lines="none"><input type="file" (change)="onFileSelected($event)"><img width="150" height="130" [src]="card.imagen"></ion-item>
-            
+          <ion-col><ion-item lines="none">
+            <ion-input type="text" name="imagen" placeholder="Imagen" [(ngModel)]="card.imagen"></ion-input>
+   <!--          <form action='http://82.223.128.240:3000/upload' method="POST" enctype="multipart/form-data">
+              <input type="file" (change)="onFileSelected($event)"><input type="submit" value="Subir"></form> 
+              <img width="150" height="130" [src]="card.imagen"> -->
+            </ion-item>
             </ion-col>
         </ion-row>
       
