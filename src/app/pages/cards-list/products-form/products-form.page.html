@@ -10,10 +10,29 @@
       <ion-col><ion-item><ion-input type="text" name="id" placeholder="id" autofocus [(ngModel)]="card.id_carta"></ion-input></ion-item></ion-col>
     </ion-row> -->
     <ion-row>
-      <ion-col><ion-item><ion-input type="text" name="producto" placeholder="Producto" [(ngModel)]="producto.producto"></ion-input></ion-item></ion-col>
+      <ion-col><ion-item><ion-label>Producto:</ion-label><ion-input type="text" name="producto" placeholder="Nombre del producto" [(ngModel)]="producto.producto"></ion-input></ion-item></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col><ion-item><ion-textarea name="descripcion" placeholder="Descripción" rows="5" [(ngModel)]="producto.descripcion"></ion-textarea></ion-item></ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Apto para vegetarianos:</ion-label>
+          <ion-select name="tipoveg" placeholder="Elija uno" [(ngModel)]="producto.tipoveg">
+            <ion-select-option [value]="1">No apto</ion-select-option>
+            <ion-select-option [value]="2">Vegetariano</ion-select-option>
+            <ion-select-option [value]="3">Vegano</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col><ion-item><ion-label>Contiene gluten:</ion-label><ion-checkbox [(ngModel)]="gluten"></ion-checkbox></ion-item></ion-col>
+    </ion-row>
+<!--     <ion-row>
+      <ion-col><ion-item><ion-label>Contiene gluten:</ion-label><ion-checkbox [(ngModel)]="gluten"></ion-checkbox></ion-item></ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col><ion-item><ion-label>Descripción:</ion-label><ion-textarea name="descripcion" placeholder="Escriba la descripción" rows="5" [(ngModel)]="producto.descripcion"></ion-textarea></ion-item></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-item><ion-label>Precio:</ion-label><ion-input type="number" name="precio" placeholder="Escriba el precio del producto" [(ngModel)]="producto.precio"></ion-input><ion-label>€</ion-label></ion-item></ion-col>
     </ion-row>
 <!--     <ion-row>
       <ion-col>   
@@ -32,18 +51,6 @@
       <ion-col></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col><ion-item lines="none"><input type="file" (change)="onFileSelected($event)"></ion-item>
         </ion-col>
     </ion-row>
@@ -53,18 +60,6 @@
     <ion-row>
       <ion-col></ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row> 
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col></ion-col>
-    </ion-row> 
  <!--    <dx-list>
     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
       <dxi-item dataField="id_carta"></dxi-item>

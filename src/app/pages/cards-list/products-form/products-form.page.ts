@@ -29,6 +29,8 @@ export class ProductsFormPage implements OnInit {
     precio: 0,
   }
 
+  gluten: boolean = false;
+
   edit: boolean = false;
 
   selectedFile: any;
@@ -43,10 +45,20 @@ export class ProductsFormPage implements OnInit {
     this.productService.getProduct(Number(this.idproduct)).subscribe(
       res => {
         this.producto = res[0];
+        this.gluten = this.getGluten(this.producto.gluten);
+        console.log(this.producto)
         this.edit = true;
       },
       err => console.log(err)
     )
+  }
+
+  getGluten(numGluten:number){
+    return numGluten == 0 ? false : true ;
+  }
+
+  putGluten(boolGluten:boolean){
+    return boolGluten == false ? 0 : 1 ;
   }
 
   onFileSelected(e){
@@ -54,6 +66,7 @@ export class ProductsFormPage implements OnInit {
   }
 
   updateProduct(){
+    this.producto.gluten = this.putGluten(this.gluten);
     this.productService.updateProduct(this.producto.id_producto, this.producto).subscribe(
       res => {
         this.closeModal();
@@ -64,7 +77,8 @@ export class ProductsFormPage implements OnInit {
 
   saveNewProduct() {
     //delete this.producto.id; si quisieramos eliminar el id y configurarlo para que autoincrementará en postgres
-     this.productService.saveProduct(this.producto).subscribe(
+    this.producto.gluten = this.putGluten(this.gluten);
+    this.productService.saveProduct(this.producto).subscribe(
       res => {
         console.log(res);
         this.closeModal();
